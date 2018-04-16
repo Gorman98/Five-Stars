@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="fiveStars">5 Stars</string>
+    <string name="logIn">Log In</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome">Welcome</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="add">ADD:</string>
+    <string name="friends">FRIENDS:</string>
+    <string-array name="genres">
+        <item>Anime</item>
+        <item>Movies</item>
+        <item>TV</item>
+        <item>Video Games</item>
+    </string-array>
+</resources>
