@@ -27,6 +27,14 @@ public class LoginFragment extends Fragment {
         logInButton = (Button) iview.findViewById(R.id.logInButton);
 
         // set on click listener
+        Button bttn = (Button) iview.findViewById(R.id.logInButton);
+        bttn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view = iview;
+                
+            }
+        });
         /*logInButton.setOnClickListener(new View.OnClickListener(){
             Intent intent = new Intent(getActivity(),MainActivity.class);
             startActivity(intent);
