@@ -45,19 +45,11 @@ public class LoginFragment extends Fragment {
                 username = inputUsername.getText().toString().trim();
                 password = inputPassword.getText().toString().trim();
 
-                view.setEnabled(true);
+                view.setEnabled(false);
 
                 //run function that checks sql for username and password
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
-
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.mainActivity, new MainFragment());
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-
 
             }
         });
