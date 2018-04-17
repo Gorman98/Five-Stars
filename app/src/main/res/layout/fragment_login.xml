@@ -10,18 +10,20 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/logInButton"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="48dp"
         android:text="@string/fiveStars"
-        android:textSize="50dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="50dp" />
+        android:textSize="50dp" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="50dp"
+        android:layout_above="@+id/logInButton"
+        android:layout_alignStart="@+id/title"
+        android:layout_marginBottom="54dp"
         android:ems="9"
         android:hint="Username" />
 
@@ -29,18 +31,18 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/username"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="30dp"
+        android:layout_alignStart="@+id/username"
+        android:layout_centerVertical="true"
         android:ems="9"
-        android:hint="Password" />
+        android:hint="Password"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/logInButton"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_below="@+id/password"
-        android:layout_marginLeft="100dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:ems="13"
         android:text="@string/logIn" />
