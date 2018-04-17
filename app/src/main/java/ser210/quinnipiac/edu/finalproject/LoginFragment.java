@@ -42,8 +42,8 @@ public class LoginFragment extends Fragment {
                 view = iview;
                 EditText inputUsername = (EditText) view.findViewById(R.id.username);
                 EditText inputPassword = (EditText) view.findViewById(R.id.password);
-                username = inputUsername.getText().toString();
-                password = inputPassword.getText().toString();
+                username = inputUsername.getText().toString().trim();
+                password = inputPassword.getText().toString().trim();
 
                 view.setEnabled(true);
 
