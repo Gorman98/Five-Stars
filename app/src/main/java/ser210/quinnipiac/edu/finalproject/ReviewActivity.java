@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class FriendsActivity extends Activity {
+public class ReviewActivity extends Activity {
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
@@ -18,15 +18,13 @@ public class FriendsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friends);
+        setContentView(R.layout.activity_review);
 
         mFragmentManager = getFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.add(R.id.friendsActivity, new FriendsFragment());
+        mFragmentTransaction.add(R.id.mainActivity, new MainFragment());
         mFragmentTransaction.commit();
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
