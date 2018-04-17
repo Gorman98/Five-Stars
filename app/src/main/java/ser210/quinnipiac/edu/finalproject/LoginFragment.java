@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.security.KeyStore;
 
 
 public class LoginFragment extends Fragment {
 
-    private LinearLayout linearLayout;
+    private RelativeLayout relativeLayout;
     private String username, password;
     public LoginFragment(){
 
@@ -29,7 +30,7 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         final View iview = inflater.inflate(R.layout.fragment_login, container, false);
         setHasOptionsMenu(true);
-        linearLayout = (LinearLayout) iview.findViewById(R.id.mainFragment);
+        relativeLayout = (RelativeLayout) iview.findViewById(R.id.loginFragment);
 
 
         Button button = (Button) iview.findViewById(R.id.logInButton);

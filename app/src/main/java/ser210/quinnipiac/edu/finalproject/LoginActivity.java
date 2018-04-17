@@ -17,7 +17,7 @@ public class LoginActivity extends Activity {
 
         mFragmentManager = getFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.add(R.id.loginActivity, new MainFragment());
+        mFragmentTransaction.add(R.id.loginActivity, new LoginFragment());
         mFragmentTransaction.commit();
     }
 }
