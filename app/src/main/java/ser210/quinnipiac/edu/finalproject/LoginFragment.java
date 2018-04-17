@@ -1,5 +1,7 @@
 package ser210.quinnipiac.edu.finalproject;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -7,12 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import java.security.KeyStore;
 
 
 public class LoginFragment extends Fragment {
 
-    private Button logInButton;
-
+    private LinearLayout linearLayout;
+    private String username, password;
     public LoginFragment(){
 
     }
@@ -22,16 +28,27 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View iview = inflater.inflate(R.layout.fragment_login, container, false);
+        setHasOptionsMenu(true);
+        linearLayout = (LinearLayout) iview.findViewById(R.id.mainFragment);
 
-        // add everything you're getting here
-        logInButton = (Button) iview.findViewById(R.id.logInButton);
 
-        // set on click listener
-        Button bttn = (Button) iview.findViewById(R.id.logInButton);
-        bttn.setOnClickListener(new View.OnClickListener() {
+        Button button = (Button) iview.findViewById(R.id.logInButton);
+        button.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 view = iview;
+                EditText inputUsername = (EditText) view.findViewById(R.id.username);
+                EditText inputPassword = (EditText) view.findViewById(R.id.password);
+                username = inputUsername.getText().toString();
+                password = inputPassword.getText().toString();
+
+                view.setEnabled(true);
+
+                //run function that checks sql for username and password
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
 
             }
         });
