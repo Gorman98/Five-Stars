@@ -32,7 +32,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 view = iview;
-                
+
             }
         });
         /*logInButton.setOnClickListener(new View.OnClickListener(){
