@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "349414356921",
+    "firebase_url": "https://ser-210-final-project.firebaseio.com",
+    "project_id": "ser-210-final-project",
+    "storage_bucket": "ser-210-final-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349414356921:android:fd0d391f32cb4d70",
+        "android_client_info": {
+          "package_name": "ser210.quinnipiac.edu.finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349414356921-uh3v5ervn73r4v43gafoblp2537m8jvb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6foEtJ71b_7a56mYGopyzVZmGvf8RVic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
