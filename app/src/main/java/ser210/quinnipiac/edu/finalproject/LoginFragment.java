@@ -31,8 +31,7 @@ public class LoginFragment extends Fragment {
         final View iview = inflater.inflate(R.layout.fragment_login, container, false);
         setHasOptionsMenu(true);
         relativeLayout = (RelativeLayout) iview.findViewById(R.id.loginFragment);
-
-
+        
         Button button = (Button) iview.findViewById(R.id.logInButton);
         button.setOnClickListener(new View.OnClickListener()
         {

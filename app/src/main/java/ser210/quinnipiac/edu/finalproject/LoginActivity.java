@@ -20,4 +20,6 @@ public class LoginActivity extends Activity {
         mFragmentTransaction.add(R.id.loginActivity, new LoginFragment());
         mFragmentTransaction.commit();
     }
+
+
 }

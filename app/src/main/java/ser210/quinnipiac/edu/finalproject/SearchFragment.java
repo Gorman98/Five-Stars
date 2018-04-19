@@ -9,15 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
-// search fragment
 
 public class SearchFragment extends Fragment {
+
+    private RelativeLayout searchFrag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        final View v = inflater.inflate(R.layout.fragment_search, container, false);
+        searchFrag = (RelativeLayout) v.findViewById(R.id.searchFragment);
+        searchFrag.setBackgroundColor(getResources().getColor(MainActivity.color));
+
+        return v;
     }
 }
