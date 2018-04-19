@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 
 public class FriendsFragment extends Fragment {
+    private RelativeLayout friendsFrag;
 
     public FriendsFragment(){
 
@@ -22,7 +24,8 @@ public class FriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_login, container, false);
-
+        friendsFrag = (RelativeLayout) v.findViewById(R.id.friendsFragment);
+        friendsFrag.setBackgroundColor(getResources().getColor(MainActivity.color));
         // add everything you're getting here
 
         // set on click listener

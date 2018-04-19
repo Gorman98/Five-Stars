@@ -16,15 +16,20 @@ public class MainActivity extends Activity {
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
 
+    public static int color;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        color = R.color.white;
+
         mFragmentManager = getFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.add(R.id.mainActivity, new MainFragment());
         mFragmentTransaction.commit();
+
     }
 
     @Override
@@ -39,14 +44,27 @@ public class MainActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.action_friends:
                 // User goes to favorites activity
-                Intent intent = new Intent(this, FriendsActivity.class);
-                startActivity(intent);
+                Intent friendsIntent = new Intent(this, FriendsActivity.class);
+                startActivity(friendsIntent);
                 return true;
-
+            case R.id.action_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static void setColorVal(int i){
+        if(i == 0){
+            color = R.color.white;
+        } else if (i == 1){
+            color = R.color.green;
+        } else if (i == 2) {
+            color = R.color.blue;
         }
     }
 }

@@ -73,6 +73,7 @@ public class LoginFragment extends Fragment {
         });
 
 
+
         Button button = (Button) iview.findViewById(R.id.logInButton);
         button.setOnClickListener(new View.OnClickListener()
         {

@@ -19,7 +19,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".FriendsActivity" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".ReviewActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>
