@@ -23,7 +23,7 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.fragment_login, container, false);
+        final View v = inflater.inflate(R.layout.fragment_friends, container, false);
         friendsFrag = (RelativeLayout) v.findViewById(R.id.friendsFragment);
         friendsFrag.setBackgroundColor(getResources().getColor(MainActivity.color));
         // add everything you're getting here
