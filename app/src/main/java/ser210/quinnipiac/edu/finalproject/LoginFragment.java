@@ -46,6 +46,7 @@ public class LoginFragment extends Fragment {
         setHasOptionsMenu(true);
         relativeLayout = (RelativeLayout) iview.findViewById(R.id.loginFragment);
 
+
         //Get instance of the Google Firebase
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
