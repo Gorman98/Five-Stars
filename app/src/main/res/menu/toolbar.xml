@@ -5,7 +5,7 @@
         android:id="@+id/action_friends"
         android:title="@string/friends1"
         android:icon="@drawable/ic_friends_24dp"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <!-- Settings, should always be in the overflow -->
     <item
