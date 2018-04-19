@@ -23,9 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/logInButton"
         android:layout_alignStart="@+id/title"
+        android:hint="Username"
         android:layout_marginBottom="54dp"
-        android:ems="9"
-        android:hint="Username" />
+        android:ems="9" />
 
     <EditText
         android:id="@+id/password"
@@ -45,6 +45,20 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:ems="13"
-        android:text="@string/logIn" />
+        android:text="@string/logIn"
+        />
+
+    <Button
+        android:id="@+id/createAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:background="@color/colorCreate"
+        android:layout_below="@+id/logInButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="12"
+        android:text="@string/createAccount"
+        android:textColor="@color/white"
+        />
 
 </RelativeLayout>
