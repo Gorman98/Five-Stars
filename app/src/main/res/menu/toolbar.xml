@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_share"
+        android:title="Share"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        android:actionProviderClass="android.widget.ShareActionProvider" />
+
     <item
         android:id="@+id/action_friends"
         android:title="@string/friends1"
         android:icon="@drawable/ic_friends_24dp"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <!-- Settings, should always be in the overflow -->
     <item
