@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ShareActionProvider;
 
 public class FriendsActivity extends Activity {
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
+    private ShareActionProvider shareActionProvider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,17 @@ public class FriendsActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+        shareActionProvider = (ShareActionProvider) menuItem.getActionProvider();
+        setIntent("Get 5 Stars today!");
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void setIntent(String text){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT,text);
+        shareActionProvider.setShareIntent(intent);
     }
 
     @Override
