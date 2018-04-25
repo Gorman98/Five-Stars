@@ -12,8 +12,9 @@
         android:layout_above="@+id/username"
 
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="54dp"
-        android:background="@drawable/mainbanner" />
+        android:layout_marginBottom="54dp"/>
+    <!-- android:background="@drawable/mainbanner" -->
+
     <!--<TextView-->
         <!--android:id="@+id/title"-->
         <!--android:layout_width="wrap_content"-->

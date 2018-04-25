@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import org.json.JSONException;
+
 
 public class SearchFragment extends Fragment {
 
@@ -54,6 +56,14 @@ public class SearchFragment extends Fragment {
             genreBanner.setImageResource(R.drawable.videogamebanner);
             URL = "https://api-endpoint.igdb.com/games/" + "?mashap-key=d6cc0d2a46052f4e3fd2b5dcdef40db0";
         }
+
+        try {
+            new Worker(this).execute(URL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return v;
     }
+
 }
