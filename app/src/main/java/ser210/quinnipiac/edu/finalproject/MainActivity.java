@@ -10,12 +10,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ShareActionProvider;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
-
+    public static String userLoggedIn;
     public static int color;
 
     @Override
@@ -29,6 +30,8 @@ public class MainActivity extends Activity {
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.add(R.id.mainActivity, new MainFragment());
         mFragmentTransaction.commit();
+        Intent intent = getIntent();
+        userLoggedIn = intent.getStringExtra("loggedInName");
 
     }
 
@@ -67,4 +70,5 @@ public class MainActivity extends Activity {
             color = R.color.blue;
         }
     }
+
 }

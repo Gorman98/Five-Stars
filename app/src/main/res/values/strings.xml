@@ -11,10 +11,10 @@
     <string name="add">ADD:</string>
     <string name="friends">FRIENDS:</string>
     <string-array name="genres">
-        <item>Anime</item>
-        <item>Movies</item>
-        <item>TV</item>
-        <item>Video Games</item>
+        <item name="anime">Anime</item>
+        <item name="movies">Movies</item>
+        <item name="tv">TV</item>
+        <item name="videoGames">Video Games</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -25,5 +25,6 @@
     <string name="review">Write a review</string>
     <string name="friends1">Friends</string>
     <string name="createAccount">Create Account</string>
+    <string name="genre">Genre</string>
 
 </resources>
