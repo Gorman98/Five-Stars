@@ -5,19 +5,29 @@
     android:id="@+id/searchFragment"
     tools:context="ser210.quinnipiac.edu.finalproject.SearchFragment">
 
+    <TextView
+        android:id="@+id/genreBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/genre"
+        android:textSize="50dp" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/genreBanner"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="55dp"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_below="@+id/genreBanner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:paddingTop="15dp"
-        android:hint="@string/search" />
+        android:ems="10"
+        android:hint="@string/search"
+        android:paddingTop="15dp" />
 
 </RelativeLayout>

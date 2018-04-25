@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class LoginFragment extends Fragment {
     private EditText usernameEditText,passwordEditText;
     private RelativeLayout relativeLayout;
     private String username, password;
+    public int validLogin, validAccount = 0;
     public LoginFragment(){
 
     }
@@ -62,6 +64,20 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 signIn(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString().trim());
+                view = iview;
+                EditText inputUsername = (EditText) view.findViewById(R.id.username);
+                EditText inputPassword = (EditText) view.findViewById(R.id.password);
+                username = inputUsername.getText().toString().trim();
+                password = inputPassword.getText().toString().trim();
+
+                view.setEnabled(false);
+                //if(getValidLogin() == 1) {
+                    System.out.println("Button Login");
+                    //run function that checks sql for username and password if the login was succesful
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("loggedInName", username);
+                    startActivity(intent);
+                //}
             }
         });
 
@@ -70,35 +86,15 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createAccount(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString().trim());
-            }
-        });
-
-
-        Button button = (Button) iview.findViewById(R.id.logInButton);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
                 view = iview;
-                EditText inputUsername = (EditText) view.findViewById(R.id.username);
-                EditText inputPassword = (EditText) view.findViewById(R.id.password);
-                username = inputUsername.getText().toString().trim();
-                password = inputPassword.getText().toString().trim();
-
-                view.setEnabled(false);
-
-                //run function that checks sql for username and password
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-
+                //if(getValidAccount() == 1) {
+                    EditText inputUsername = (EditText) view.findViewById(R.id.username);
+                    EditText inputPassword = (EditText) view.findViewById(R.id.password);
+                    inputUsername.setText("");
+                    inputPassword.setText("");
+                //}
             }
         });
-        /*logInButton.setOnClickListener(new View.OnClickListener(){
-            Intent intent = new Intent(getActivity(),MainActivity.class);
-            startActivity(intent);
-        });
-        */
 
         return iview;
     }
@@ -110,20 +106,18 @@ public class LoginFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(user.getUsername()).exists()){
-                    //Toast.makeText(LoginFragment.this, "Username already exists",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Username already exists, try Again",Toast.LENGTH_SHORT).show();
+                    setValidAccount(0);
                 }
                 else{
+                    setValidAccount(1);
                     users.child(user.getUsername()).setValue(user);
-                    //reset the edit text values so the user can login after successfully creating an account.
-                    //usernameEditText = "";
-                    //passwordEditText = "";
-                    //Toast.makeText(LoginFragment.this, "Success, account registered",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Success, account registered",Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
@@ -138,17 +132,19 @@ public class LoginFragment extends Fragment {
                     if(!username.isEmpty()){
                         User login = dataSnapshot.child(username).getValue(User.class);
                         if (login.getPassword().equals(password)){
+                            System.out.println("Valid Login");
+                            setValidLogin(1);
                             //send usser to the next screen
-                            //Toast.makeText(this, "Login Successful",Toast.LENGTH_SHORT).show();
-
-
+                            Toast.makeText(getActivity(), "Login Successful",Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            //Toast.makeText(LoginFragment.this, "Password Incorrect",Toast.LENGTH_SHORT).show();
+                            setValidLogin(0);
+                            Toast.makeText(getActivity(), "Password Incorrect",Toast.LENGTH_SHORT).show();
                         }
                     }
                     else{
-                        //Toast.makeText(LoginFragment.this, "Username is incorrect or does not exist",Toast.LENGTH_SHORT).show();
+                        setValidLogin(0);
+                        Toast.makeText(getActivity(), "Username is incorrect or does not exist",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -158,6 +154,22 @@ public class LoginFragment extends Fragment {
 
             }
         });
+    }
+
+    public int getValidLogin() {
+        return validLogin;
+    }
+
+    public void setValidLogin(int validLogin) {
+        this.validLogin = validLogin;
+    }
+
+    public int getValidAccount() {
+        return validAccount;
+    }
+
+    public void setValidAccount(int validAccount) {
+        this.validAccount = validAccount;
     }
 
 }

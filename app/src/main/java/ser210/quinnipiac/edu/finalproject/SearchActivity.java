@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.StaticLayout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ public class SearchActivity extends Activity {
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
+    public static String genreSelected = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class SearchActivity extends Activity {
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.add(R.id.searchActivity, new SearchFragment());
         mFragmentTransaction.commit();
+        Intent intent = getIntent();
+        genreSelected = intent.getStringExtra("genre");
     }
 
     @Override
