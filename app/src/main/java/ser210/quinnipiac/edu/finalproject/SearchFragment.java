@@ -5,10 +5,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 
@@ -23,9 +20,27 @@ public class SearchFragment extends Fragment {
         searchFrag = (RelativeLayout) v.findViewById(R.id.searchFragment);
         searchFrag.setBackgroundColor(getResources().getColor(MainActivity.color));
 
-        TextView genre = (TextView) v.findViewById(R.id.genreBanner);
+        ImageView genreBanner = (ImageView) v.findViewById(R.id.genreBanner);
 
-        genre.setText(SearchActivity.genreSelected);
+        System.out.println("GENRE " + SearchActivity.genreSelected);
+
+        if(SearchActivity.genreSelected.equals("Anime")) {
+            //set banner and api for anime
+            genreBanner.setImageResource(R.drawable.animebanner);
+        }
+        else if(SearchActivity.genreSelected.equals("Movies")) {
+            //st banner and api for movies
+            genreBanner.setImageResource(R.drawable.moviebanner);
+        }
+        else if(SearchActivity.genreSelected.equals("TV")) {
+            //set banner and api for tv
+            genreBanner.setImageResource(R.drawable.tvbanner);
+
+        }
+        else  {
+            //set banner and api for video games
+            genreBanner.setImageResource(R.drawable.videogamebanner);
+        }
         return v;
     }
 }

@@ -3,29 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ser210.quinnipiac.edu.finalproject.LoginFragment"
-    android:id="@+id/loginFragment">
+    android:id="@+id/loginFragment"
+    android:background="@color/white">
 
-
-    <TextView
-        android:id="@+id/title"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/logInButton"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/fiveStars"
-        android:textSize="50dp" />
+        android:layout_above="@+id/username"
+
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="54dp"
+        android:background="@drawable/mainbanner" />
+    <!--<TextView-->
+        <!--android:id="@+id/title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignStart="@+id/logInButton"-->
+        <!--android:layout_marginStart="43dp"-->
+        <!--android:layout_marginTop="48dp"-->
+        <!--android:text="@string/fiveStars"-->
+        <!--android:textSize="50dp" />-->
 
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/logInButton"
-        android:layout_alignStart="@+id/title"
-        android:hint="Username"
-        android:layout_marginBottom="54dp"
-        android:ems="9" />
+        android:layout_above="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:ems="9"
+        android:hint="Username" />
 
     <EditText
         android:id="@+id/password"
