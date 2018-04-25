@@ -24,7 +24,6 @@ public class FriendsActivity extends Activity {
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.add(R.id.friendsActivity, new FriendsFragment());
         mFragmentTransaction.commit();
-
     }
 
 
