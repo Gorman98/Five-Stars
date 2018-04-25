@@ -19,8 +19,6 @@ public class MainActivity extends Activity {
     public static String userLoggedIn;
     public static int color;
 
-    public static int color;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
