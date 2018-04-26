@@ -3,6 +3,7 @@ package ser210.quinnipiac.edu.finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +95,7 @@ public class SearchFragment extends Fragment {
 
     public void check(){
         try {
+            Log.d("test", URL);
             new Worker(this).execute(URL);
         } catch (JSONException e) {
             e.printStackTrace();
