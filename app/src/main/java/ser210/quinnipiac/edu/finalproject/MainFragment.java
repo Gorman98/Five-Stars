@@ -21,8 +21,6 @@ import android.widget.RelativeLayout;
 public class MainFragment extends Fragment {
 
     private RelativeLayout mainFrag;
-    static String URL = "";
-    static String key = "d6cc0d2a46052f4e3fd2b5dcdef40db0";
     private ListView listView;
 
     @Override

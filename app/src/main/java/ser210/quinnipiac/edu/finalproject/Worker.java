@@ -19,11 +19,11 @@ import java.net.URL;
  */
 
 public class Worker extends AsyncTask<String, String, String> {
-    private MainFragment main;
+    private SearchFragment searchFragment;
     private String json;
 
-    public Worker(MainFragment main) throws JSONException {
-        this.main = main;
+    public Worker(SearchFragment search) throws JSONException {
+        this.searchFragment = search;
         json = null;
     }
 
@@ -78,9 +78,9 @@ public class Worker extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
         try {
             JSONObject jsonObject = new JSONObject(json);
+            searchFragment.result(jsonObject.getString("title"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
