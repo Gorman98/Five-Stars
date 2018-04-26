@@ -22,4 +22,13 @@
         android:ems="10"
         android:hint="@string/search" />
 
+    <Button
+        android:id="@+id/searchBttn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="Search" />
+
 </RelativeLayout>

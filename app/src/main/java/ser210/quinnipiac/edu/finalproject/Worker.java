@@ -78,9 +78,9 @@ public class Worker extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
         try {
             JSONObject jsonObject = new JSONObject(json);
+            searchFragment.result(jsonObject.getString("title"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
