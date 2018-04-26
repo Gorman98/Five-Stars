@@ -67,16 +67,14 @@ public class SearchFragment extends Fragment {
                     search = input.getText().toString().trim();
                     search.replaceAll(" ", "+");
                     URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
-                } else if (genre == " movie") {
+                } else if (genre == "movie") {
                     URL = "https://api.themoviedb.org/3/movie/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
+                    Log.d("test", "asd");
+                    check();
                 } else if (genre == "tv") {
                     URL = "https://api.themoviedb.org/3/tv/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
                 } else if (genre == "games") {
                     URL = "https://api-endpoint.igdb.com/games/" + "?mashap-key=d6cc0d2a46052f4e3fd2b5dcdef40db0";
-                }
-
-                if(genre != "empty") {
-                   check();
                 }
             }
         });
@@ -87,9 +85,10 @@ public class SearchFragment extends Fragment {
     }
 
 
-    public void result(String i){
+    public void result(String i, String i2){
         Intent intent = new Intent(getActivity(), ReviewActivity.class);
         intent.putExtra("title", i);
+        intent.putExtra("overview", i2);
         startActivity(intent);
     }
 

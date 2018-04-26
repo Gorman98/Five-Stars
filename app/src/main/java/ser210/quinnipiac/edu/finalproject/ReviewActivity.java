@@ -16,7 +16,8 @@ public class ReviewActivity extends Activity {
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
     private ShareActionProvider shareActionProvider;
-
+    public static String title;
+    public static String overview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,12 @@ public class ReviewActivity extends Activity {
 
         mFragmentManager = getFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.add(R.id.mainActivity, new MainFragment());
+        mFragmentTransaction.add(R.id.reviewActivity, new ReviewFragment());
         mFragmentTransaction.commit();
+
+        Intent intent = getIntent();
+        title = intent.getStringExtra("title");
+        overview = intent.getStringExtra("overview");
     }
 
     @Override

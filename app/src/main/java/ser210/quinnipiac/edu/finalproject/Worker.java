@@ -42,11 +42,6 @@ public class Worker extends AsyncTask<String, String, String> {
             URL url = new URL(strings[0]);
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
-            Authenticator.setDefault (new Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication ("SER210Final", "SER210".toCharArray());
-                }
-            });
 
             InputStream inputStream = connection.getInputStream();
 
@@ -87,7 +82,7 @@ public class Worker extends AsyncTask<String, String, String> {
         super.onPostExecute(s);
         try {
             JSONObject jsonObject = new JSONObject(json);
-            searchFragment.result(jsonObject.getJSONObject("anime").getJSONObject("entry").getString("title"));
+            searchFragment.result(jsonObject.getString("original_title"), jsonObject.getString("overview"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
