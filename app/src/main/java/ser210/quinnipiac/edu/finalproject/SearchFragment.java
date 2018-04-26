@@ -35,7 +35,6 @@ public class SearchFragment extends Fragment {
         ImageView genreBanner = (ImageView) v.findViewById(R.id.genreBanner);
 
         input = (EditText) v.findViewById(R.id.input);
-        search = input.getText().toString().trim();
 
         genre = "empty";
         if(SearchActivity.genreSelected.equals("Anime")) {
@@ -65,6 +64,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(genre == "anime") {
+                    search = input.getText().toString().trim();
                     search.replaceAll(" ", "+");
                     URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
                 } else if (genre == " movie") {
