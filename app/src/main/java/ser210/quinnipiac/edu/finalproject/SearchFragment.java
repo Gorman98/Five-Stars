@@ -3,6 +3,7 @@ package ser210.quinnipiac.edu.finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,6 @@ public class SearchFragment extends Fragment {
         ImageView genreBanner = (ImageView) v.findViewById(R.id.genreBanner);
 
         input = (EditText) v.findViewById(R.id.input);
-        search = input.getText().toString().trim();
 
         genre = "empty";
         if(SearchActivity.genreSelected.equals("Anime")) {
@@ -64,6 +64,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(genre == "anime") {
+                    search = input.getText().toString().trim();
                     search.replaceAll(" ", "+");
                     URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
                 } else if (genre == " movie") {
@@ -94,6 +95,7 @@ public class SearchFragment extends Fragment {
 
     public void check(){
         try {
+            Log.d("test", URL);
             new Worker(this).execute(URL);
         } catch (JSONException e) {
             e.printStackTrace();

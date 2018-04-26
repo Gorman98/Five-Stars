@@ -18,9 +18,8 @@
         android:id="@+id/rateBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginTop="50sp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
     <EditText
         android:id="@+id/review"
@@ -28,9 +27,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rateBar"
-        android:ems="15"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10sp"
-        android:hint="@string/review"
-        />
+        android:layout_marginTop="35dp"
+        android:ems="15"
+        android:hint="@string/review" />
+
+    <TextView
+        android:id="@+id/overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/rateBar"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="28dp"
+        android:text="TextView" />
 </RelativeLayout>

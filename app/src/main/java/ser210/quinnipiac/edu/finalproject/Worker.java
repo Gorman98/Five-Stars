@@ -10,8 +10,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 
 /**
@@ -40,6 +42,11 @@ public class Worker extends AsyncTask<String, String, String> {
             URL url = new URL(strings[0]);
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
+            Authenticator.setDefault (new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication ("SER210Final", "SER210".toCharArray());
+                }
+            });
 
             InputStream inputStream = connection.getInputStream();
 
@@ -80,7 +87,7 @@ public class Worker extends AsyncTask<String, String, String> {
         super.onPostExecute(s);
         try {
             JSONObject jsonObject = new JSONObject(json);
-            searchFragment.result(jsonObject.getString("title"));
+            searchFragment.result(jsonObject.getJSONObject("anime").getJSONObject("entry").getString("title"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
