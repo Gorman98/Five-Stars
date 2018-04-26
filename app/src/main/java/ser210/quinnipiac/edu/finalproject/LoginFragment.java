@@ -71,6 +71,8 @@ public class LoginFragment extends Fragment {
                 password = inputPassword.getText().toString().trim();
 
                 view.setEnabled(false);
+                System.out.println("CLicked Login");
+
                 //if(getValidLogin() == 1) {
                     System.out.println("Button Login");
                     //run function that checks sql for username and password if the login was succesful
@@ -131,6 +133,7 @@ public class LoginFragment extends Fragment {
                 if(dataSnapshot.child(user.getUsername()).exists()){
                     if(!username.isEmpty()){
                         User login = dataSnapshot.child(username).getValue(User.class);
+                        System.out.println("Passsword" + login.getPassword());
                         if (login.getPassword().equals(password)){
                             System.out.println("Valid Login");
                             setValidLogin(1);
