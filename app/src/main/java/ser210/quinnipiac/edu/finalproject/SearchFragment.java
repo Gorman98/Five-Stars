@@ -37,6 +37,7 @@ public class SearchFragment extends Fragment {
             genreBanner.setImageResource(R.drawable.animebanner);
             search.replaceAll(" ", "+");
             URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
+
         }
         else if(SearchActivity.genreSelected.equals("Movies")) {
             //st banner and api for movies

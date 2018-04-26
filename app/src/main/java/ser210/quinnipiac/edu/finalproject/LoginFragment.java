@@ -134,7 +134,7 @@ public class LoginFragment extends Fragment {
                         if (login.getPassword().equals(password)){
                             System.out.println("Valid Login");
                             setValidLogin(1);
-                            //send usser to the next screen
+                            //send user to the next screen
                             Toast.makeText(getActivity(), "Login Successful",Toast.LENGTH_SHORT).show();
                         }
                         else{
