@@ -29,14 +29,14 @@ public class FriendsFragment extends Fragment {
         // add everything you're getting here
 
         // set on click listener
-        ImageButton bttn = (ImageButton) v.findViewById(R.id.addFriendButton);
-        bttn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view = v;
-
-            }
-        });
+//        ImageButton bttn = (ImageButton) v.findViewById(R.id.addFriendButton);
+//        bttn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                view = v;
+//
+//            }
+//        });
         /*logInButton.setOnClickListener(new View.OnClickListener(){
             Intent intent = new Intent(getActivity(),MainActivity.class);
             startActivity(intent);
