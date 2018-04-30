@@ -70,8 +70,9 @@ public class SearchFragment extends Fragment {
                 search = input.getText().toString().trim();
                 search.replaceAll(" ", "+");
                 if(genre == "anime") {
-                    URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
-                    check(false);
+                    search = input.getText().toString().trim();
+                    URL="https://kitsu.io/api/edge/anime?filter[text]=" + search + "?page[limit]=5&page[offset]=0";
+                    check(true);
                 } else if (genre == "movie") {
                     search = input.getText().toString().trim();
                     search.replaceAll(" ", "+");
@@ -104,7 +105,8 @@ public class SearchFragment extends Fragment {
         } else if (genre == "game") {
 
         } else if (genre == "anime") {
-
+            intent.putExtra("title", json.getJSONArray("data").getJSONObject(0).getJSONObject("attributes").getJSONObject("titles").getString("en"));
+            intent.putExtra("overview", json.getJSONArray("data").getJSONObject(0).getJSONObject("attributes").getString("synopsis"));
         }
         startActivity(intent);
     }
