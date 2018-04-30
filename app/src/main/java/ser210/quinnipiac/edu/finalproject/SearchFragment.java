@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class SearchFragment extends Fragment {
@@ -69,32 +70,38 @@ public class SearchFragment extends Fragment {
                     URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
                 } else if (genre == "movie") {
                     URL = "https://api.themoviedb.org/3/movie/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
-                    Log.d("test", "asd");
-                    check();
                 } else if (genre == "tv") {
                     URL = "https://api.themoviedb.org/3/tv/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
                 } else if (genre == "games") {
                     URL = "https://api-endpoint.igdb.com/games/" + "?mashap-key=d6cc0d2a46052f4e3fd2b5dcdef40db0";
                 }
+                check();
+                System.out.println("GENRE " + SearchActivity.genreSelected);
             }
         });
-
-        System.out.println("GENRE " + SearchActivity.genreSelected);
 
         return v;
     }
 
 
-    public void result(String i, String i2){
+    public void result(JSONObject json) throws JSONException {
         Intent intent = new Intent(getActivity(), ReviewActivity.class);
-        intent.putExtra("title", i);
-        intent.putExtra("overview", i2);
+        if(genre == "tv") {
+            intent.putExtra("title", json.getString("original_name"));
+            intent.putExtra("overview", json.getString("overview"));
+        } else if (genre == "movie") {
+            intent.putExtra("title", json.getString("original_title"));
+            intent.putExtra("overview", json.getString("overview"));
+        } else if (genre == "games") {
+
+        } else if (genre == "anime") {
+
+        }
         startActivity(intent);
     }
 
     public void check(){
         try {
-            Log.d("test", URL);
             new Worker(this).execute(URL);
         } catch (JSONException e) {
             e.printStackTrace();

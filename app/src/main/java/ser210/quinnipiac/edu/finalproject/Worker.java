@@ -82,7 +82,7 @@ public class Worker extends AsyncTask<String, String, String> {
         super.onPostExecute(s);
         try {
             JSONObject jsonObject = new JSONObject(json);
-            searchFragment.result(jsonObject.getString("original_title"), jsonObject.getString("overview"));
+            searchFragment.result(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
