@@ -22,7 +22,8 @@
         <activity android:name=".ReviewActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
