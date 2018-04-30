@@ -1,33 +1,19 @@
 package ser210.quinnipiac.edu.finalproject;
 
-import android.app.ListFragment;
 import android.os.AsyncTask;
-import android.provider.DocumentsContract;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.PasswordAuthentication;
 import java.net.URL;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerFactory;
 
 /**
  * Created by Kyle on 3/9/2018.
@@ -97,7 +83,7 @@ public class Worker extends AsyncTask<String, String, String> {
                 url = new URL(strings[0]);
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
                 DocumentBuilder db = dbf.newDocumentBuilder();
-                doc = db.parse(new InputSource(url.openStream()));
+                Document doc = db.parse(new InputSource(url.openStream()));
                 doc.getDocumentElement().normalize();
             } catch (Exception e) {
                 System.out.println("XML Pasing Excpetion = " + e);

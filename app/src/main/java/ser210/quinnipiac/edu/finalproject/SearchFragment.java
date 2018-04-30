@@ -78,7 +78,9 @@ public class SearchFragment extends Fragment {
                     URL = "http://www.omdbapi.com/?t=" + search +"&apikey=300b9075";
                     check(true);
                 } else if (genre == "tv") {
-                    URL = "https://api.themoviedb.org/3/tv/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
+                    search = input.getText().toString().trim();
+                    search.replaceAll(" ", "+");
+                    URL = "http://api.tvmaze.com/singlesearch/shows?q=" + search;
                     check(true);
                 } else if (genre == "game") {
                     URL = "http://thegamesdb.net/api/GetGamesList.php?name=" + search;
@@ -94,8 +96,8 @@ public class SearchFragment extends Fragment {
     public void jsonResult(JSONObject json) throws JSONException {
         Intent intent = new Intent(getActivity(), ReviewActivity.class);
         if(genre == "tv") {
-            intent.putExtra("title", json.getString("original_name"));
-            intent.putExtra("overview", json.getString("overview"));
+            intent.putExtra("title", json.getString("name"));
+            intent.putExtra("overview", json.getString("summary"));
         } else if (genre == "movie") {
             intent.putExtra("title", json.getString("Title"));
             intent.putExtra("overview", json.getString("Plot"));
@@ -122,6 +124,7 @@ public class SearchFragment extends Fragment {
     }
 
     public void check(Boolean jsonCheck){
+        Log.d("URL", URL);
         try {
             new Worker(this, jsonCheck).execute(URL);
         } catch (JSONException e) {
