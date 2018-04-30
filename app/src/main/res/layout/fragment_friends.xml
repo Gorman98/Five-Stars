@@ -15,14 +15,14 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"/>
 
-    <ImageButton
-        android:id="@+id/addFriendButton"
+    <EditText
+        android:id="@+id/addFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/addText"
+        android:layout_toRightOf="@id/addText"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/ic_person_add_black_48dp" />
+        android:ems="10"/>
 
     <TextView
         android:id="@+id/friendsText"
@@ -34,11 +34,12 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"/>
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/friendsText">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/myRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@id/friendsText"/>
 
-    </ListView>
 
 </RelativeLayout>
