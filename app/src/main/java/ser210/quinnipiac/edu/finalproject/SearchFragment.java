@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
 
 
 public class SearchFragment extends Fragment {
@@ -88,7 +89,7 @@ public class SearchFragment extends Fragment {
     }
 
 
-    public void result(JSONObject json) throws JSONException {
+    public void jsonResult(JSONObject json) throws JSONException {
         Intent intent = new Intent(getActivity(), ReviewActivity.class);
         if(genre == "tv") {
             intent.putExtra("title", json.getString("original_name"));
@@ -101,6 +102,20 @@ public class SearchFragment extends Fragment {
         } else if (genre == "anime") {
 
         }
+        startActivity(intent);
+    }
+
+    public  void xmlResult(Document document) {
+        Intent intent = new Intent(getActivity(), ReviewActivity.class);
+       if (genre == "game") {
+
+        } else if (genre == "anime") {
+
+        } else if (genre == "tv") {
+
+       } else if (genre == "movie") {
+
+       }
         startActivity(intent);
     }
 
