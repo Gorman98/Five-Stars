@@ -73,7 +73,9 @@ public class SearchFragment extends Fragment {
                     URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
                     check(false);
                 } else if (genre == "movie") {
-                    URL = "https://api.themoviedb.org/3/movie/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
+                    search = input.getText().toString().trim();
+                    search.replaceAll(" ", "+");
+                    URL = "http://www.omdbapi.com/?t=" + search +"&apikey=300b9075";
                     check(true);
                 } else if (genre == "tv") {
                     URL = "https://api.themoviedb.org/3/tv/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
@@ -95,8 +97,8 @@ public class SearchFragment extends Fragment {
             intent.putExtra("title", json.getString("original_name"));
             intent.putExtra("overview", json.getString("overview"));
         } else if (genre == "movie") {
-            intent.putExtra("title", json.getString("original_title"));
-            intent.putExtra("overview", json.getString("overview"));
+            intent.putExtra("title", json.getString("Title"));
+            intent.putExtra("overview", json.getString("Plot"));
         } else if (genre == "game") {
 
         } else if (genre == "anime") {
