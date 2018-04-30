@@ -37,7 +37,9 @@ public class SearchFragment extends Fragment {
 
         input = (EditText) v.findViewById(R.id.input);
 
+        search = "";
         genre = "empty";
+
         if(SearchActivity.genreSelected.equals("Anime")) {
             //set banner and api for anime
             genreBanner.setImageResource(R.drawable.animebanner);
@@ -64,19 +66,21 @@ public class SearchFragment extends Fragment {
         bttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                search = input.getText().toString().trim();
+                search.replaceAll(" ", "+");
                 if(genre == "anime") {
-                    search = input.getText().toString().trim();
-                    search.replaceAll(" ", "+");
                     URL="https://myanimelist.net/api/anime/search.xml?q=" + search;
+                    check(false);
                 } else if (genre == "movie") {
                     URL = "https://api.themoviedb.org/3/movie/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
+                    check(true);
                 } else if (genre == "tv") {
                     URL = "https://api.themoviedb.org/3/tv/550?api_key=ddea89b7d05ee63353966311f2d7e65f";
-                } else if (genre == "games") {
-                    URL = "https://api-endpoint.igdb.com/games/" + "?mashap-key=d6cc0d2a46052f4e3fd2b5dcdef40db0";
+                    check(true);
+                } else if (genre == "game") {
+                    URL = "http://thegamesdb.net/api/GetGamesList.php?name=" + search;
+                    check(false);
                 }
-                check();
-                System.out.println("GENRE " + SearchActivity.genreSelected);
             }
         });
 
@@ -92,7 +96,7 @@ public class SearchFragment extends Fragment {
         } else if (genre == "movie") {
             intent.putExtra("title", json.getString("original_title"));
             intent.putExtra("overview", json.getString("overview"));
-        } else if (genre == "games") {
+        } else if (genre == "game") {
 
         } else if (genre == "anime") {
 
@@ -100,9 +104,9 @@ public class SearchFragment extends Fragment {
         startActivity(intent);
     }
 
-    public void check(){
+    public void check(Boolean jsonCheck){
         try {
-            new Worker(this).execute(URL);
+            new Worker(this, jsonCheck).execute(URL);
         } catch (JSONException e) {
             e.printStackTrace();
         }
