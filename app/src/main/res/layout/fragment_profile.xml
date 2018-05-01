@@ -1,13 +1,21 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context="ser210.quinnipiac.edu.finalproject.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/usernameProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Profile Fragment" />
+        android:textSize="60sp" />
+    
+    <ImageView
+        android:id="@+id/profilePic"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/emptypic"/>
 
-</RelativeLayout>
+</LinearLayout>
