@@ -15,6 +15,12 @@
         android:icon="@drawable/ic_friends_24dp"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_profile"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_account_circle_black_48dp"
+        app:showAsAction="always"/>
+
     <!-- Settings, should always be in the overflow -->
     <item
         android:id="@+id/action_settings"

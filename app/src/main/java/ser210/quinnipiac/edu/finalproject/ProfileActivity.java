@@ -12,29 +12,21 @@ import android.view.MenuItem;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class ProfileActivity extends Activity {
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
     private ShareActionProvider shareActionProvider;
-    public static String userLoggedIn;
-    public static int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        color = R.color.white;
+        setContentView(R.layout.activity_profile);
 
         mFragmentManager = getFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.add(R.id.mainActivity, new MainFragment());
+        mFragmentTransaction.add(R.id.profileActivity, new ProfileFragment());
         mFragmentTransaction.commit();
-
-        Intent intent = getIntent();
-        userLoggedIn = intent.getStringExtra("loggedInName");
-
     }
 
     @Override
@@ -75,16 +67,6 @@ public class MainActivity extends Activity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public static void setColorVal(int i){
-        if(i == 0){
-            color = R.color.white;
-        } else if (i == 1){
-            color = R.color.green;
-        } else if (i == 2) {
-            color = R.color.blue;
         }
     }
 

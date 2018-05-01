@@ -26,5 +26,7 @@
     <string name="friends1">Friends</string>
     <string name="createAccount">Create Account</string>
     <string name="genre">Genre</string>
-
+    <string name="profile">Profile</string>
+    <string name="upload">Click to Upload Image</string>
+    <string name="reviews">My Reviews</string>
 </resources>
