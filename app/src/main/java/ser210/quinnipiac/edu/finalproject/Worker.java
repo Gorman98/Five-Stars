@@ -1,10 +1,17 @@
 package ser210.quinnipiac.edu.finalproject;
 
 import android.os.AsyncTask;
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +21,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 /**
  * Created by Kyle on 3/9/2018.
@@ -24,11 +33,15 @@ public class Worker extends AsyncTask<String, String, String> {
     private String json;
     Boolean jsonCheck;
     private Document doc;
+    private String xmlTitle;
+    private String xmlYear;
+    private HandlerXml xmlWork;
 
     public Worker(SearchFragment search, Boolean jsonCheck) throws JSONException {
         this.searchFragment = search;
         this.jsonCheck = jsonCheck;
         json = null;
+        xmlTitle = "";
     }
 
     @Override
@@ -81,10 +94,18 @@ public class Worker extends AsyncTask<String, String, String> {
             URL url = null;
             try {
                 url = new URL(strings[0]);
-                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                Document doc = db.parse(new InputSource(url.openStream()));
-                doc.getDocumentElement().normalize();
+                SAXParserFactory spf = SAXParserFactory.newInstance();
+                SAXParser sp = spf.newSAXParser();
+                XMLReader xr = sp.getXMLReader();
+                Log.d("test 1", "test 1");
+                xmlWork = new HandlerXml();
+                xr.setContentHandler(xmlWork);
+                xr.parse(new InputSource(url.openStream()));
+                Log.d("test 2", "test 2");
+
+                xmlTitle = xmlWork.getTitle();
+                xmlYear = xmlWork.getYear();
+
             } catch (Exception e) {
                 System.out.println("XML Pasing Excpetion = " + e);
             }
@@ -105,7 +126,7 @@ public class Worker extends AsyncTask<String, String, String> {
             }
         }
         else {
-            searchFragment.xmlResult(doc);
+            searchFragment.xmlResult(xmlTitle, xmlYear);
         }
     }
 }

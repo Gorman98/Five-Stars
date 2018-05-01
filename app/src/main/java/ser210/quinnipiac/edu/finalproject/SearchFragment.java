@@ -15,12 +15,14 @@ import android.widget.RelativeLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 
 public class SearchFragment extends Fragment {
 
     private RelativeLayout searchFrag;
-    static String key = "d6cc0d2a46052f4e3fd2b5dcdef40db0";
     static String URL = "";
     private EditText input;
     private String search;
@@ -68,7 +70,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 search = input.getText().toString().trim();
-                search.replaceAll(" ", "+");
+                search = search.replaceAll(" ", "+");
                 if(genre == "anime") {
                     search = input.getText().toString().trim();
                     URL="https://kitsu.io/api/edge/anime?filter[text]=" + search + "?page[limit]=5&page[offset]=0";
@@ -98,7 +100,13 @@ public class SearchFragment extends Fragment {
         Intent intent = new Intent(getActivity(), ReviewActivity.class);
         if(genre == "tv") {
             intent.putExtra("title", json.getString("name"));
-            intent.putExtra("overview", json.getString("summary"));
+            String str = json.getString("summary");
+            str = str.replace("<p>", "");
+            str = str.replace("</p>", "");
+            str = str.replace("<b>", "");
+            str = str.replace("</b>", "");
+            str = str.replace("<br>", "");
+            intent.putExtra("overview", str);
         } else if (genre == "movie") {
             intent.putExtra("title", json.getString("Title"));
             intent.putExtra("overview", json.getString("Plot"));
@@ -111,10 +119,11 @@ public class SearchFragment extends Fragment {
         startActivity(intent);
     }
 
-    public  void xmlResult(Document document) {
+    public  void xmlResult(String title, String year) {
         Intent intent = new Intent(getActivity(), ReviewActivity.class);
        if (genre == "game") {
-
+            intent.putExtra("title", title);
+            intent.putExtra("overview", "Year Released: " + year);
         } else if (genre == "anime") {
 
         } else if (genre == "tv") {
