@@ -26,6 +26,7 @@ public class ProfileFragment extends Fragment {
 
     private static final int RESULT_LOAD_IMAGE = 1;
     ImageView profile;
+    ListView reviews;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,12 +37,21 @@ public class ProfileFragment extends Fragment {
         TextView username = (TextView) iview.findViewById(R.id.usernameProfile);
         username.setText(MainActivity.userLoggedIn);
 
+        // upload profile picture
         profile = (ImageView) iview.findViewById(R.id.profilePic);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+            }
+        });
+
+        reviews = (ListView) iview.findViewById(R.id.myReviews);
+        reviews.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                
             }
         });
 

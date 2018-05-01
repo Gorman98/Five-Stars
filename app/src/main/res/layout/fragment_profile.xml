@@ -1,14 +1,20 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     tools:context="ser210.quinnipiac.edu.finalproject.ProfileFragment">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/usernameProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
         android:textSize="60sp" />
     
     <ImageView
@@ -18,4 +24,26 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/emptypic"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reviews"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"/>
+
+    <ListView
+        android:id="@+id/myReviews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"/>
+
 </LinearLayout>
+
+</ScrollView>
