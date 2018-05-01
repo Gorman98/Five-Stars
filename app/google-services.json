@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "349414356921-vgmnndj59bgrfqv986tk5tc12h9vkk70.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ser210.quinnipiac.edu.finalproject",
+            "certificate_hash": "2e9f8865d4bad8c2db37f571517f78e0f54efaf2"
+          }
+        },
+        {
           "client_id": "349414356921-uh3v5ervn73r4v43gafoblp2537m8jvb.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349414356921-uh3v5ervn73r4v43gafoblp2537m8jvb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
