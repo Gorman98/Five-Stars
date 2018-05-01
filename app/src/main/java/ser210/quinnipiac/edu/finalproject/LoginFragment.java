@@ -105,7 +105,7 @@ public class LoginFragment extends Fragment {
                 //}
             }
         });
-//test
+
         return iview;
     }
     //method that is called when create account is clicked, this then gets the event listener for the database and tries
