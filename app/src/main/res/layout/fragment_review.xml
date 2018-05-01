@@ -40,4 +40,13 @@
         android:layout_below="@+id/title"
         android:layout_marginTop="28dp"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/submitReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/review"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="Submit" />
 </RelativeLayout>
