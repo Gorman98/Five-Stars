@@ -81,13 +81,13 @@ public class LoginFragment extends Fragment {
                 System.out.println("CLicked Login");
 
                 //if valid login, move to next screen.
-                //if(getValidLogin() == 1) {
+                if(getValidLogin() == 1) {
                     System.out.println("Button Login");
                     //run function that checks sql for username and password if the login was successful
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.putExtra("loggedInName", username);
                     startActivity(intent);
-                //}
+                }
             }
         });
 
@@ -97,12 +97,12 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 createAccount(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString().trim());
                 view = iview;
-                //if(getValidAccount() == 1) {
+                if(getValidAccount() == 1) {
                     EditText inputUsername = (EditText) view.findViewById(R.id.username);
                     EditText inputPassword = (EditText) view.findViewById(R.id.password);
                     inputUsername.setText("");
                     inputPassword.setText("");
-                //}
+                }
             }
         });
 
@@ -140,16 +140,16 @@ public class LoginFragment extends Fragment {
         users.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("PLEASE FOR THE LOVE OF GOD CALL THIS");
-//                if(dataSnapshot.child(username).exists() && dataSnapshot.child(username).child("password").equals(password)){
-//                    System.out.println("Valid Login");
-//                    setValidLogin(1);
-//                    //send user to the next screen
-//                    Toast.makeText(getActivity(), "Login Successful",Toast.LENGTH_SHORT).show();
-//                }else{
-//                    setValidLogin(0);
-//                    Toast.makeText(getActivity(), "Username is incorrect or does not exist",Toast.LENGTH_SHORT).show();
-//                }
+                System.out.println(dataSnapshot.child(username).child("password").getValue());
+                if(dataSnapshot.child(username).child("password").getValue().equals(password)){
+                    System.out.println("Valid Login");
+                    setValidLogin(1);
+                    //send user to the next screen
+                    Toast.makeText(getActivity(), "Login Successful",Toast.LENGTH_SHORT).show();
+                }else{
+                    setValidLogin(0);
+                    Toast.makeText(getActivity(), "Username is incorrect or does not exist",Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -163,8 +163,7 @@ public class LoginFragment extends Fragment {
         return validLogin;
     }
 
-    public void setValidLogin(int validLogin) {
-        this.validLogin = validLogin;
+    public void setValidLogin(int validLogins) {validLogin = validLogins;
     }
 
     public int getValidAccount() {
