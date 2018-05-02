@@ -45,7 +45,7 @@ public class ReviewFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
 
-
+        //fragment review that gets all the component
         final View v = inflater.inflate(R.layout.fragment_review, container, false);
         reviewFrag = (RelativeLayout) v.findViewById(R.id.reviewFragment);
         reviewFrag.setBackgroundColor(getResources().getColor(MainActivity.color));
@@ -54,6 +54,7 @@ public class ReviewFragment extends Fragment {
         title.setText(ReviewActivity.title);
         titleText = title.getText().toString().trim();
 
+        //ratings bar listener
         rating = (RatingBar) v.findViewById(R.id.rateBar);
         rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -62,9 +63,11 @@ public class ReviewFragment extends Fragment {
             }
         });
 
+        //gets overview
         overview = (TextView) v.findViewById(R.id.overview);
         overview.setText(ReviewActivity.overview);
 
+        //button that subbmits review to firebase and sends the user back to the homescreen
         button = (Button) v.findViewById(R.id.submitReview);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,8 +78,14 @@ public class ReviewFragment extends Fragment {
                 System.out.println("Username: " + username);
 
                 //add to the user reference, adds the rating and review
-                users.child(username).child("Ratings").child(titleText).child(String.valueOf(ratingValue)).push().setValue(ratingValue);
-                users.child(username).child("Ratings").child(titleText).child(reviewText).push().setValue(ratingValue);
+                if(users.child(username).child("Review").child(titleText).getKey() != null){
+                    users.child(username).child("Review").child(titleText).child("Rating").setValue(ratingValue);
+                    users.child(username).child("Review").child(titleText).child("Review Statement").setValue(reviewText);
+
+                }else {
+                    users.child(username).child("Review").child(titleText).child("Rating").push().setValue(ratingValue);
+                    users.child(username).child("Review").child(titleText).child("Review Statement").push().setValue(reviewText);
+                }
                 Toast.makeText(getActivity(), "Review Submitted",Toast.LENGTH_SHORT).show();
 
                 //intent to sendt the user back to main menu.
