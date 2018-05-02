@@ -1,7 +1,5 @@
 package ser210.quinnipiac.edu.finalproject;
 
-import android.util.Log;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

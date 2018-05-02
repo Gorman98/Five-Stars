@@ -1,23 +1,20 @@
 package ser210.quinnipiac.edu.finalproject;
 
-import android.content.Context;
+import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -25,8 +22,10 @@ import static android.app.Activity.RESULT_OK;
 public class ProfileFragment extends Fragment {
 
     private static final int RESULT_LOAD_IMAGE = 1;
-    ImageView profile;
-    ListView reviews;
+    private ImageView profile;
+    private ListView reviews;
+    private FirebaseDatabase database;
+    private DatabaseReference users;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,10 +47,10 @@ public class ProfileFragment extends Fragment {
         });
 
         reviews = (ListView) iview.findViewById(R.id.myReviews);
-        reviews.setOnClickListener(new View.OnClickListener(){
+        reviews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
             }
         });
 
