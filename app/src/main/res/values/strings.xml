@@ -29,4 +29,6 @@
     <string name="profile">Profile</string>
     <string name="upload">Click to Upload Image</string>
     <string name="reviews">My Reviews</string>
+    <string name="delete">Delete your account</string>
+    <string name="background">Change background color</string>
 </resources>
