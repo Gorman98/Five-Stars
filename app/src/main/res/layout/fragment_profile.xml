@@ -16,7 +16,7 @@
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
         android:textSize="60sp" />
-    
+
     <ImageView
         android:id="@+id/profilePic"
         android:layout_width="150dp"
@@ -31,12 +31,14 @@
         android:layout_gravity="center_horizontal"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/reviews"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        android:textSize="20sp"/>
+        android:layout_marginTop="10dp"
+        android:text="@string/reviews"
+        android:textSize="20sp"
+        android:background="@color/review"
+        />
 
     <ListView
         android:id="@+id/myReviews"

@@ -56,10 +56,18 @@ public class ReviewActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.action_friends:
                 // User goes to favorites activity
-                Intent intent = new Intent(this, FriendsActivity.class);
-                startActivity(intent);
+                Intent friendsIntent = new Intent(this, FriendsActivity.class);
+                startActivity(friendsIntent);
                 return true;
-
+            case R.id.action_profile:
+                // User goes to Profile activity
+                Intent profileIntent = new Intent(this, ProfileActivity.class);
+                startActivity(profileIntent);
+                return true;
+            case R.id.action_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
