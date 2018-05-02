@@ -1,6 +1,7 @@
 package ser210.quinnipiac.edu.finalproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Rating;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +32,7 @@ public class ReviewFragment extends Fragment {
     private Button button;
     private RatingBar rating;
     private EditText review;
-    private String username;
+    private String username,titleText,reviewText;
     private int ratingValue;
     FirebaseDatabase database;
     DatabaseReference users;
@@ -47,9 +49,10 @@ public class ReviewFragment extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_review, container, false);
         reviewFrag = (RelativeLayout) v.findViewById(R.id.reviewFragment);
         reviewFrag.setBackgroundColor(getResources().getColor(MainActivity.color));
-        username = LoginFragment.user.getUsername();
+        username = MainActivity.userLoggedIn;
         title = (TextView) v.findViewById(R.id.title);
         title.setText(ReviewActivity.title);
+        titleText = title.getText().toString().trim();
 
         rating = (RatingBar) v.findViewById(R.id.rateBar);
         rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -58,7 +61,6 @@ public class ReviewFragment extends Fragment {
                 ratingValue = (int) rating;
             }
         });
-
 
         overview = (TextView) v.findViewById(R.id.overview);
         overview.setText(ReviewActivity.overview);
@@ -69,28 +71,18 @@ public class ReviewFragment extends Fragment {
             public void onClick(View view) {
                 view = v;
                 review = (EditText) view.findViewById(R.id.review);
-                if(users.child(username).child("Ratings") == null){
-                    users.child(username).child("Ratings").push();
+                reviewText = review.getText().toString().trim();
+                System.out.println("Username: " + username);
 
-                }else{
-                    System.out.println("Rating Child is Null");
-                }
                 //add to the user reference, adds the rating and review
-               users.child("Ratings").child(title.getText().toString().trim()).push();
-               users.child("Ratings").child(title.getText().toString().trim()).child(String.valueOf(ratingValue)).push();
-               users.child("Ratings").child(title.getText().toString().trim()).child(String.valueOf(review)).push();
+                users.child(username).child("Ratings").child(titleText).child(String.valueOf(ratingValue)).push().setValue(ratingValue);
+                users.child(username).child("Ratings").child(titleText).child(reviewText).push().setValue(ratingValue);
+                Toast.makeText(getActivity(), "Review Submitted",Toast.LENGTH_SHORT).show();
 
-//                LoginFragment.users.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        dataSnapshot.child(LoginFragment.user.getUsername())  ;
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
+                //intent to sendt the user back to main menu.
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.putExtra("loggedInName", username);
+                startActivity(intent);
 
             }
         });
