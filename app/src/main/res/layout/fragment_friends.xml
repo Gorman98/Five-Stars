@@ -6,40 +6,24 @@
     tools:context="ser210.quinnipiac.edu.finalproject.FriendsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/addText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        android:textSize="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"/>
-
-    <EditText
-        android:id="@+id/addFriend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/addText"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:ems="10"/>
 
     <TextView
-        android:id="@+id/friendsText"
+        android:id="@+id/userText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="35dp"
         android:text="@string/friends"
-        android:textSize="25dp"
-        android:layout_below="@id/addText"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="30dp"/>
+        android:textSize="25dp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/myRecycleView"
+    <ListView
+        android:id="@+id/userList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:layout_below="@id/friendsText"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/userText" />
 
 
 </RelativeLayout>

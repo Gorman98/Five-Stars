@@ -9,7 +9,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="add">ADD:</string>
-    <string name="friends">FRIENDS:</string>
+    <string name="friends">USERS:</string>
     <string-array name="genres">
         <item name="anime">Anime</item>
         <item name="movies">Movies</item>
