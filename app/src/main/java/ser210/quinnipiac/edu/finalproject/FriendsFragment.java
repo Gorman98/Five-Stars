@@ -1,11 +1,13 @@
 package ser210.quinnipiac.edu.finalproject;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -63,10 +65,16 @@ public class FriendsFragment extends Fragment {
 
             }
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String itemSelected = (String) adapterView.getItemAtPosition(i);
 
-
-
-
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                intent.putExtra("user", itemSelected);
+                startActivity(intent);
+            }
+        });
 
         return v;
     }
