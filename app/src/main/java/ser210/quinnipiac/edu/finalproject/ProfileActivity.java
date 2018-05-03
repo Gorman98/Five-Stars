@@ -15,11 +15,15 @@ public class ProfileActivity extends Activity {
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
     private ShareActionProvider shareActionProvider;
+    private static String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        Intent intent = getIntent();
+        user = intent.getStringExtra("user");
 
         mFragmentManager = getFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
@@ -68,4 +72,7 @@ public class ProfileActivity extends Activity {
         }
     }
 
+    public static String getUser(){
+        return user;
+    }
 }
