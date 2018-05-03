@@ -37,6 +37,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import ser210.quinnipiac.edu.finalproject.Model.Review;
+import ser210.quinnipiac.edu.finalproject.Model.ReviewAdapter;
+
 import static android.app.Activity.RESULT_OK;
 
 
@@ -45,24 +48,28 @@ public class ProfileFragment extends Fragment {
     private static final int RESULT_LOAD_IMAGE = 1;
     private ImageView profile;
     private ListView reviews;
-    private ArrayList<String> userReviews;
     private FirebaseDatabase database;
     private DatabaseReference users;
-    private ArrayAdapter<String> adapter;
-
     private FirebaseStorage firebaseStorage;
     private StorageReference storageRef, imageRef;
     private Uri selectedImage, downloadURL;
     private ProgressDialog progressDialog;
     private UploadTask uploadTask;
+    private ReviewAdapter reviewAdapter;
+    private String user;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View iview = inflater.inflate(R.layout.fragment_profile, container, false);
-
         final TextView username = (TextView) iview.findViewById(R.id.usernameProfile);
-        username.setText(MainActivity.userLoggedIn);
+        if(ProfileActivity.getUser() != null){
+            user = ProfileActivity.getUser();
+        } else {
+            user = MainActivity.userLoggedIn;
+        }
+        username.setText(user);
 
         firebaseStorage = FirebaseStorage.getInstance();
         storageRef = firebaseStorage.getReference();
@@ -70,7 +77,7 @@ public class ProfileFragment extends Fragment {
         // upload profile picture
         profile = (ImageView) iview.findViewById(R.id.profilePic);
 
-        storageRef.child("images/" + MainActivity.userLoggedIn).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("images/" + user).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 // Got the download URL for 'users/me/profile.png'
@@ -93,26 +100,25 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        reviews = (ListView) iview.findViewById(R.id.myReviews);
 
+        //get review listview, used later on for adapter
+        reviews = (ListView) iview.findViewById(R.id.myReviews);
+        //getfirebase reference and create
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
-        userReviews = new ArrayList<String>();
+        final ArrayList<Review> reviewList = new ArrayList<>();
 
         users.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot dsp : dataSnapshot.child(MainActivity.userLoggedIn).child("Review").getChildren()) {
+                for(DataSnapshot dsp : dataSnapshot.child(user).child("Review").getChildren()) {
                     System.out.println("We cooking meow");
                     Log.d("Review ", String.valueOf(dsp.getKey()));
-                    System.out.println(userReviews.size());
-                    userReviews.add(dsp.getKey());
-                    adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, userReviews);
-                    //adapter.add(users.child(MainActivity.userLoggedIn).child("Review").child("My Hero Academia").child("Rating").getKey());
-                    //adapter.add(users.child(MainActivity.userLoggedIn).child("Review").child("My Hero Academia").child("Review Statement").getKey());
-
-                    reviews.setAdapter(adapter);
+                    System.out.println(reviewList.size());
+                    reviewList.add(new Review(dsp.getKey(), dsp.child("Review Statement").getValue().toString(),dsp.child("Rating").getValue().toString()));
+                    reviewAdapter = new ReviewAdapter(getContext(), reviewList);
+                    reviews.setAdapter(reviewAdapter);
                 }
             }
 
@@ -146,7 +152,7 @@ public class ProfileFragment extends Fragment {
 
     private void uploadImage() {
         //create reference to images folder and assing a name to the file that will be uploaded
-        imageRef = storageRef.child("images/" + MainActivity.userLoggedIn);
+        imageRef = storageRef.child("images/" + user);
         //creating and showing progress dialog
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMax(100);
