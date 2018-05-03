@@ -34,11 +34,11 @@
 
     <TextView
         android:id="@+id/overview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rateBar"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/title"
-        android:layout_marginTop="28dp"
+        android:ellipsize="end"
         android:text="TextView" />
 
     <Button
