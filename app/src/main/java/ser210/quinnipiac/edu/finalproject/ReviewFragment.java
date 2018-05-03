@@ -37,7 +37,7 @@ public class ReviewFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
 
-        //fragment review that gets all the component
+        //fragment Review that gets all the component
         final View v = inflater.inflate(R.layout.fragment_review, container, false);
         reviewFrag = (RelativeLayout) v.findViewById(R.id.reviewFragment);
         reviewFrag.setBackgroundColor(getResources().getColor(MainActivity.color));
@@ -59,7 +59,7 @@ public class ReviewFragment extends Fragment {
         overview = (TextView) v.findViewById(R.id.overview);
         overview.setText(ReviewActivity.overview);
 
-        //button that subbmits review to firebase and sends the user back to the homescreen
+        //button that subbmits Review to firebase and sends the user back to the homescreen
         button = (Button) v.findViewById(R.id.submitReview);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class ReviewFragment extends Fragment {
                 reviewText = review.getText().toString().trim();
                 System.out.println("Username: " + username);
 
-                //add to the user reference, adds the rating and review
+                //add to the user reference, adds the rating and Review
                 if(users.child(username).child("Review").child(titleText).getKey() != null){
                     users.child(username).child("Review").child(titleText).child("Rating").setValue(ratingValue);
                     users.child(username).child("Review").child(titleText).child("Review Statement").setValue(reviewText);

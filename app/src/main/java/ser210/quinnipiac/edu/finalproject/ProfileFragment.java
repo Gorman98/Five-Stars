@@ -37,6 +37,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import ser210.quinnipiac.edu.finalproject.Model.Review;
+import ser210.quinnipiac.edu.finalproject.Model.ReviewAdapter;
+
 import static android.app.Activity.RESULT_OK;
 
 
@@ -45,16 +48,14 @@ public class ProfileFragment extends Fragment {
     private static final int RESULT_LOAD_IMAGE = 1;
     private ImageView profile;
     private ListView reviews;
-    private ArrayList<String> userReviews;
     private FirebaseDatabase database;
     private DatabaseReference users;
-    private ArrayAdapter<String> adapter;
-
     private FirebaseStorage firebaseStorage;
     private StorageReference storageRef, imageRef;
     private Uri selectedImage, downloadURL;
     private ProgressDialog progressDialog;
     private UploadTask uploadTask;
+    private ReviewAdapter reviewAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,26 +94,25 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        reviews = (ListView) iview.findViewById(R.id.myReviews);
 
+        //get review listview, used later on for adapter
+        reviews = (ListView) iview.findViewById(R.id.myReviews);
+        //getfirebase reference and create
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
-        userReviews = new ArrayList<String>();
+        final ArrayList<Review> reviewList = new ArrayList<>();
 
         users.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                //loops through datasnapshot and creates a new review with each available dataset
                 for(DataSnapshot dsp : dataSnapshot.child(MainActivity.userLoggedIn).child("Review").getChildren()) {
                     System.out.println("We cooking meow");
                     Log.d("Review ", String.valueOf(dsp.getKey()));
-                    System.out.println(userReviews.size());
-                    userReviews.add(dsp.getKey());
-                    adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, userReviews);
-                    //adapter.add(users.child(MainActivity.userLoggedIn).child("Review").child("My Hero Academia").child("Rating").getKey());
-                    //adapter.add(users.child(MainActivity.userLoggedIn).child("Review").child("My Hero Academia").child("Review Statement").getKey());
-
-                    reviews.setAdapter(adapter);
+                    System.out.println(reviewList.size());
+                    reviewList.add(new Review(dsp.getKey(), dsp.child("Review Statement").getValue().toString(),dsp.child("Rating").getValue().toString()));
+                    reviewAdapter = new ReviewAdapter(getContext(), reviewList);
+                    reviews.setAdapter(reviewAdapter);
                 }
             }
 

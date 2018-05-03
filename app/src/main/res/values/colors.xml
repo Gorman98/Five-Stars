@@ -8,6 +8,14 @@
     <color name="white">#FFFFFF</color>
     <color name="blue">#ADD8E6</color>
 
-    <color name="review">#29abd6</color>
+    <color name="review">#63d8ff</color>
+    <color name="reviewAdapter">#3ab2f9</color>
+    <color name="reviewTitle">#77cdff</color>
+    <color name="reviewReview">#b7e5ff</color>
+    <color name="reviewRating">#d3efff</color>
+
+    <color name="profile_frag">#f4f4f4</color>
+
+
 
 </resources>
