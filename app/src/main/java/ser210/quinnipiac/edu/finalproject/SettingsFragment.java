@@ -77,9 +77,10 @@ public class SettingsFragment extends Fragment {
 
                 database = FirebaseDatabase.getInstance();
                 users = database.getReference("Users");
-                users.child(MainActivity.userLoggedIn).removeValue();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+                users.child(MainActivity.userLoggedIn).removeValue();
+
             }
         });
         return v;
