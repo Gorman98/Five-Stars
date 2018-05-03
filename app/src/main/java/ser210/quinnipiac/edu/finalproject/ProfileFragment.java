@@ -113,12 +113,12 @@ public class ProfileFragment extends Fragment {
                 for(DataSnapshot dsp : dataSnapshot.child(user).child("Review").getChildren()) {
                     System.out.println("We cooking meow");
                     Log.d("Review ", String.valueOf(dsp.getKey()));
-                    System.out.println("Title: " + dsp.getValue().toString());
+                    System.out.println("Title: " + dsp.getKey().toString());
                     System.out.println("Review: " + dsp.child("Review Statement").getValue().toString());
                     System.out.println("Rating: " + dsp.child("Rating").getValue().toString());
 
                     System.out.println(reviewList.size());
-                    reviewList.add(new Review(dsp.getKey(), dsp.child("Review Statement").getValue().toString(),dsp.child("Rating").getValue().toString()));
+                    reviewList.add(new Review(dsp.getKey().toString(), dsp.child("Review Statement").getValue().toString(),dsp.child("Rating").getValue().toString()));
                     reviewAdapter = new ReviewAdapter(getContext(), reviewList);
                     reviews.setAdapter(reviewAdapter);
                 }

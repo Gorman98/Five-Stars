@@ -34,9 +34,11 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
     public View getView(int position, View convertView, ViewGroup parent){
         View listitem = convertView;
 
-        if(listitem == null){
+        if(listitem == null)
             listitem = LayoutInflater.from(mContext).inflate(R.layout.custom_review_adapter,parent,false);
+
             Review currentReview = reviewList.get(position);
+
 
             TextView title= (TextView) listitem.findViewById(R.id.title_review_adapter);
             title.setText(currentReview.getTitle());
@@ -47,9 +49,6 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
             TextView rating = (TextView) listitem.findViewById(R.id.rating_review_adapter);
             rating.setText(currentReview.getRating());
 
-            return listitem;
-
-        }
         return listitem;
 
     }
